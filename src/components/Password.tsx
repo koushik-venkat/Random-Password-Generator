@@ -1,10 +1,14 @@
 import React, { useCallback, useRef } from "react";
 
-const Password = ({ password }) => {
+interface PasswordProps{
+    password: string;
+}
+
+const Password: React.FC<PasswordProps> = ({ password }) => {
   const passwordRef = useRef(null);
 
   const copyPassword = useCallback(() => {
-    passwordRef.current?.select();
+    passwordRef?.current?.select();
     window.navigator.clipboard.writeText(password);
   }, [password]);
 

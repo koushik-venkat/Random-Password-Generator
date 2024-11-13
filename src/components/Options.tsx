@@ -1,6 +1,13 @@
 import React from "react";
 
-const Options = ({
+interface OptionProps{
+    length: number;
+    setLength: (arg: number) => void;
+    setIncludeCharacters: (arg: boolean) => void;
+    setIncludeNumber: (arg: boolean) => void;
+}
+
+const Options: React.FC<OptionProps> = ({
   length,
   setLength,
   setIncludeCharacters,
@@ -21,7 +28,7 @@ const Options = ({
             min={8}
             max={20}
             value={length}
-            onChange={(e) => setLength(e.target.value)}
+            onChange={(e) => setLength(Number(e.target.value))}
             placeholder="Password"
             readOnly
             className ="cursor-pointer w-64 h-2 bg-gray-200 rounded-lg appearance-none dark:bg-gray-400"
@@ -35,7 +42,7 @@ const Options = ({
           type="checkbox"
           name=""
           id=""
-          onClick={() => setIncludeNumber((prev) => !prev)}
+          onClick={() => setIncludeNumber((prev: boolean) => !prev)}
         />
       </div>
       <div className="flex align-center justify-center text-xl">
@@ -45,7 +52,7 @@ const Options = ({
           type="checkbox"
           name=""
           id=""
-          onClick={() => setIncludeCharacters((prev) => !prev)}
+          onClick={() => setIncludeCharacters((prev: boolean) => !prev)}
         />
       </div>
     </div>
