@@ -5,7 +5,7 @@ interface PasswordProps{
 }
 
 const Password: React.FC<PasswordProps> = ({ password }) => {
-  const passwordRef = useRef(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const copyPassword = useCallback(() => {
     passwordRef?.current?.select();

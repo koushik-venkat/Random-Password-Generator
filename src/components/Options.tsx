@@ -1,10 +1,12 @@
 import React from "react";
 
-interface OptionProps{
-    length: number;
-    setLength: (arg: number) => void;
-    setIncludeCharacters: (arg: boolean) => void;
-    setIncludeNumber: (arg: boolean) => void;
+interface OptionProps {
+  length: number;
+  setLength: (arg: number) => void;
+  setIncludeCharacters: (arg: boolean) => void;
+  setIncludeNumber: (arg: boolean) => void;
+  includeNumber: boolean;
+  includeCharacters: boolean;
 }
 
 const Options: React.FC<OptionProps> = ({
@@ -12,7 +14,15 @@ const Options: React.FC<OptionProps> = ({
   setLength,
   setIncludeCharacters,
   setIncludeNumber,
+  includeNumber,
+  includeCharacters,
 }) => {
+  const toggleBoolean = (
+    setter: (arg: boolean) => void,
+    currentValue: boolean
+  ) => {
+    setter(!currentValue);
+  };
   return (
     <div className="bg-purple-950 text-slate-200 w-3/5 m-auto rounded-xl p-4 my-4 flex flex-col gap-4">
       <div className="flex align-center justify-center">
@@ -31,7 +41,7 @@ const Options: React.FC<OptionProps> = ({
             onChange={(e) => setLength(Number(e.target.value))}
             placeholder="Password"
             readOnly
-            className ="cursor-pointer w-64 h-2 bg-gray-200 rounded-lg appearance-none dark:bg-gray-400"
+            className="cursor-pointer w-64 h-2 bg-gray-200 rounded-lg appearance-none dark:bg-gray-400"
           />
         </div>
       </div>
@@ -42,7 +52,7 @@ const Options: React.FC<OptionProps> = ({
           type="checkbox"
           name=""
           id=""
-          onClick={() => setIncludeNumber((prev: boolean) => !prev)}
+          onClick={() => toggleBoolean(setIncludeNumber, includeNumber)}
         />
       </div>
       <div className="flex align-center justify-center text-xl">
@@ -52,7 +62,7 @@ const Options: React.FC<OptionProps> = ({
           type="checkbox"
           name=""
           id=""
-          onClick={() => setIncludeCharacters((prev: boolean) => !prev)}
+          onClick={() => toggleBoolean(setIncludeCharacters, includeCharacters)}
         />
       </div>
     </div>

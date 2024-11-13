@@ -4,9 +4,9 @@ import Password from "./components/Password";
 import Options from "./components/Options";
 
 function App() {
-  const [length, setLength] = useState(8);
-  const [includeNumber, setIncludeNumber] = useState(false);
-  const [includeCharacters, setIncludeCharacters] = useState(false);
+  const [length, setLength] = useState<number>(8);
+  const [includeNumber, setIncludeNumber] = useState<boolean>(false);
+  const [includeCharacters, setIncludeCharacters] = useState<boolean>(false);
   const [password, setPassword] = useState("");
 
   const passwordGenerator = useCallback(() => {
@@ -37,6 +37,8 @@ function App() {
         setLength={setLength}
         setIncludeNumber={setIncludeNumber}
         setIncludeCharacters={setIncludeCharacters}
+        includeNumber={includeNumber}
+        includeCharacters={includeCharacters}
       />
     </div>
   );
